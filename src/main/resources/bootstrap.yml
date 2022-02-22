@@ -1,0 +1,14 @@
+server:
+  port: 30801
+
+spring:
+  profiles:
+    active: dev
+  application: loser-server
+  cloud:
+    nacos:
+      config:
+        namespace: ${nacos_config_group:beyound-dev}
+        server-addr: ${nacos:localhost:8848}
+        file-extension: yaml
+        extension-configs[0]: application-${spring.profiles.active:dev}.yaml
