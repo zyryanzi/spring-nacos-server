@@ -13,11 +13,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @EnableZuulProxy
 @SpringBootApplication
 //@EnableDiscoveryClient
-public class SpringNacosZuulApplication
+public class BeyondCloudZuulApplication
 {
     public static void main( String[] args )
     {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringNacosZuulApplication.class, args);
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(BeyondCloudZuulApplication.class, args);
         String domain = applicationContext.getEnvironment().getProperty("mydomain");
         System.out.println("spring is running on cloud --->>> " + domain);
     }
