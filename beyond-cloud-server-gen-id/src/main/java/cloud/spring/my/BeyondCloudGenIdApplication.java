@@ -11,12 +11,12 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class SpringNacosApplication
+public class BeyondCloudGenIdApplication
 {
     public static void main( String[] args )
     {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringNacosApplication.class, args);
-        String domain = applicationContext.getEnvironment().getProperty("beyound.domain");
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(BeyondCloudGenIdApplication.class, args);
+        String domain = applicationContext.getEnvironment().getProperty("mydomain");
         System.out.println("spring is running on cloud --->>> " + domain);
     }
 }

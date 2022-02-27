@@ -1,18 +1,20 @@
-server:
-  port: 30801
+#server:
+#  port: 30801
 
 spring:
   application:
-    name: application
+    name: beyond-server
   profiles:
-    active: dev
+    active: ${spring.profiles.active:dev}
   cloud:
     nacos:
       config:
         group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
-        namespace: 27e138de-886d-4000-bf22-ff479231a1b2
+        namespace: ${NACOS_NAMESPACE:}
         server-addr: ${NACOS:127.0.0.1:8848}
         file-extension: yaml
 #        extension-configs[0]:
 #          data-id: application-${spring.profiles.active:dev}.yaml
+#      discovery:
+#        server-addr: ${NACOS:127.0.0.1:8848}
 
