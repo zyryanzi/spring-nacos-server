@@ -9,9 +9,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * Hello world!
  */
-@SpringBootApplication
-//@EnableDiscoveryClient
+
+@EnableDiscoveryClient
 @EnableFeignClients
+@SpringBootApplication
 public class BeyondShortdomainApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(BeyondShortdomainApplication.class, args);
@@ -19,3 +20,4 @@ public class BeyondShortdomainApplication {
         System.out.println("short domain is running on cloud --->>> " + domain);
     }
 }
+

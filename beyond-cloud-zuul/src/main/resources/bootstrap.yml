@@ -19,5 +19,3 @@ spring:
         server-addr: ${NACOS:127.0.0.1:8848}
         namespace: ${NACOS_NAMESPACE:}
         group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
-zuul:
-  ribbon-isolation-strategy:

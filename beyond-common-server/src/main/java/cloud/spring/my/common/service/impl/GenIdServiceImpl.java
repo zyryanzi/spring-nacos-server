@@ -1,7 +1,10 @@
 package cloud.spring.my.common.service.impl;
 
 import cloud.spring.my.common.entity.SnowFlake;
+import cloud.spring.my.common.entity.User;
 import cloud.spring.my.common.service.IGenIdService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,10 +15,14 @@ import org.springframework.stereotype.Service;
 @Service("GenIdService")
 public class GenIdServiceImpl implements IGenIdService   {
 
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @Override
     public Long genSFId() {
+        User user = mongoTemplate.findById(1, User.class);
         return new SnowFlake().nextId();
     }
+
 
 }
