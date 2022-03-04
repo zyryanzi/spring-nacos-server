@@ -16,8 +16,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <!--<maven.compiler.source>1.7</maven.compiler.source>-->
+    <!--<maven.compiler.target>1.7</maven.compiler.target>-->
     <spring.cloud.alibaba.version>2.2.0.RELEASE</spring.cloud.alibaba.version>
     <spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
     <fastjson.version>1.2.75</fastjson.version>
@@ -32,9 +32,27 @@
   </parent>
 
   <modules>
+    <module>beyond-base</module>
     <module>beyond-cloud-zuul</module>
-    <module>beyond-cloud-server-gen-id</module>
+    <module>beyond-common-server</module>
+    <module>beyond-short-domain</module>
   </modules>
+
+  <!-- 打包到nexus服务 -->
+  <distributionManagement>
+    <repository>
+      <id>beyond</id>
+      <name>beyond Repository</name>
+      <url>http://localhost:58081/repository/my-group/beyond</url>
+      <!--<url>http://maven.jeecg.com:8090/nexus/content/repositories/jeecg</url>-->
+    </repository>
+    <snapshotRepository>
+      <id>beyond-snapshots</id>
+      <name>beyond Snapshot Repository</name>
+      <url>http://localhost:58081/repository/my-group/snapshorts</url>
+      <!--<url>http://maven.jeecg.com:8090/nexus/content/repositories/snapshots/</url>-->
+    </snapshotRepository>
+  </distributionManagement>
 
   <!-- 可以省去下面相关依赖的版本约束 -->
   <dependencyManagement>
@@ -60,6 +78,15 @@
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
     <!--<dependency>-->
       <!--<groupId>org.springframework.boot</groupId>-->
