@@ -1,0 +1,22 @@
+#server:
+#  port: 30801
+
+spring:
+  application:
+    name: beyond-spring-gateway
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  cloud:
+    nacos:
+      config:
+        group: ${SPRING_CLOUD_NACOS_CONFIG_GROUP:DEFAULT_GROUP}
+        namespace: ${SPRING_CLOUD_NACOS_CONFIG_NAMESPACE:}
+        server-addr: ${SPRING_CLOUD_NACOS_CONFIG_SERVER-ADDR:[2001:470:c:761::2]:8848}
+        file-extension: yaml
+        enabled: ${SPRING_CLOUD_NACOS_CONFIG_ENABLEDfalse}
+      #        extension-configs[0]:
+#          data-id: application-${spring.profiles.active:dev}.yaml
+      discovery:
+        server-addr: ${SPRING_CLOUD_NACOS_DISCOVERY_SERVER-ADDR:[2001:470:c:761::2]:8848}
+        namespace: ${SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE:}
+        group: ${SPRING_CLOUD_NACOS_DISCOVERY_GROUP:DEFAULT_GROUP}

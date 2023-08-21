@@ -1,0 +1,22 @@
+#server:
+#  port: 30801
+
+spring:
+  application:
+    name: beyond-short-domain
+  profiles:
+    active: ${spring.profiles.active:master}
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS:[2001:470:c:761::2]:8848}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
+        file-extension: yaml
+        refresh-enabled: true
+      #        extension-configs[0]:
+#          data-id: application-${spring.profiles.active:dev}.yaml
+      discovery:
+        server-addr: ${NACOS:[2001:470:c:761::2]:8848}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}

@@ -4,6 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.1.0</version>
+  </parent>
+
   <groupId>cloud.spring.my</groupId>
   <artifactId>beyond-cloud-parent</artifactId>
   <packaging>pom</packaging>
@@ -16,26 +22,21 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!--<maven.compiler.source>1.7</maven.compiler.source>-->
-    <!--<maven.compiler.target>1.7</maven.compiler.target>-->
-    <spring.cloud.alibaba.version>2.2.0.RELEASE</spring.cloud.alibaba.version>
-    <spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
+    <spring.cloud.alibaba.version>2022.0.0.0-RC1</spring.cloud.alibaba.version>
+    <spring.cloud.version>2022.0.2</spring.cloud.version>
     <fastjson.version>1.2.75</fastjson.version>
-    <!--<nacos.version>2.2.0.RELEASE</nacos.version>-->
-    <!--<shiro.version>1.4.0</shiro.version>-->
   </properties>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.2.RELEASE</version>
-  </parent>
-
   <modules>
-    <module>beyond-base</module>
-    <module>beyond-cloud-zuul</module>
-    <module>beyond-common-server</module>
-    <module>beyond-short-domain</module>
+    <module>base-server</module>
+    <module>spring-gateway-server</module>
+    <module>common-server</module>
+    <module>short-domain-server</module>
+    <module>mongodb-server</module>
+    <module>spring-security-server</module>
+    <module>redis-server</module>
+    <module>study</module>
+      <module>spring-security-client</module>
   </modules>
 
   <!-- 打包到nexus服务 -->
@@ -71,10 +72,18 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-bom</artifactId>
+        <version>2023.0.1</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
+    <!-- nacos 配置中心 -->
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
@@ -83,33 +92,50 @@
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
     </dependency>
+
+    <!-- spring -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-bootstrap</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>2.0.35</version>
     </dependency>
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-test</artifactId>-->
-      <!--<scope>test</scope>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.projectlombok</groupId>-->
-      <!--<artifactId>lombok</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>com.alibaba</groupId>-->
-      <!--<artifactId>fastjson</artifactId>-->
-      <!--<version>${fastjson.version}</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>31.1-jre</version>
+    </dependency>
+
+    <!-- shiro -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring-boot-starter</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+
+
+
     <!--<dependency>-->
     <!--<groupId>com.alibaba.cloud</groupId>-->
     <!--<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
@@ -145,6 +171,9 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <classifier>exec</classifier>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

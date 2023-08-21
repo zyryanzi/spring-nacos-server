@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: beyond-study
+  profiles:
+    active: ${spring.profiles.active:dev}
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
+        file-extension: yaml
+        refresh-enabled: true
+        enabled: ${NACOS_CONFIG_GROUP:false}
+      #        extension-configs[0]:
+#          data-id: application-${spring.profiles.active:dev}.yaml
+      discovery:
+        server-addr: ${NACOS:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}

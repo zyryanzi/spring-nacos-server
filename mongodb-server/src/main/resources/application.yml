@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      username: Cluster94976
+      password: Smx7TEVqVG1l
+      uri: mongodb+srv://cluster94976.o7qtpp5.mongodb.net/local
+#      database: local

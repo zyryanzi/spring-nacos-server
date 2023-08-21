@@ -1,0 +1,41 @@
+server:
+  port: 59001
+
+logging:
+  level:
+    root: debug
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          test-provider1:
+            issuer-uri: http://192.168.50.211
+        registration:
+          oidc-client:
+            client-id: oidc-client
+            client-secret: secret
+            client-name: 测试客户端
+            provider: test-povider1
+            redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - all
+          sso:
+            authorization-uri: http://${sso.host:192.168.50.211}:${sso.port:59001}/${sso.context-path:}/oauth2/authorize
+            token-uri: http://${sso.host:192.168.50.211}:${sso.port:59001}/${sso.context-path:}/oauth2/token
+            user-info-uri: http://${sso.host:192.168.50.211}:${sso.port:59001}/${sso.context-path:}/oauth2/userinfo
+            user-info-authentication-method: GET
+            user-name-attribute: loginName
+
+sso:
+  registration-id: sso
+  host: sso.xxx.com
+  port: 443
+  context-path: sso
+  client-id: demo-client-id
+  client-secret: demo-client-secret
+  logout-path: /sso/logout
