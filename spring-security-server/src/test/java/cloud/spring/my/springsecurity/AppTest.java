@@ -33,4 +33,5 @@ public class AppTest extends TestCase {
         System.out.println(HashUtils.getMurmur3_128("sadsasdffasdfasdfasffasddfjlakf;laksfdfasjfds"));
         System.out.println(HashUtils.getMurmur3_128("skdfjslkdfjflsajaidfwqwiejaksadfioqjokqwepfweftiqefaslkfsjfjjoqweifjowifjowiqpjefjoiwefskdfjslkdfjflsajaidfwqwiejaksadfioqjokqwepfweftiqefaslkfsjfjjoqweifjowifjowiqpjefjoiwefskdfjslkdfjflsajaidfwqwiejaksadfioqjokqwepfweftiqefaslkfsjfjjoqweifjowifjowiqpjefjoiwef"));
     }
+
 }

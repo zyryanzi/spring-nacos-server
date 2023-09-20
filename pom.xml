@@ -37,6 +37,7 @@
     <module>redis-server</module>
     <module>study</module>
       <module>spring-security-client</module>
+      <module>handle-spring</module>
   </modules>
 
   <!-- 打包到nexus服务 -->

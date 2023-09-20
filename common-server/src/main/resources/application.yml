@@ -1,0 +1,13 @@
+server:
+  port: 59000
+
+logging:
+  level:
+    root: info
+    com:
+      alibaba:
+        nacos: error
+
+spring:
+  main:
+    allow-circular-references: true

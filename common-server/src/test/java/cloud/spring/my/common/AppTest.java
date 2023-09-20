@@ -1,11 +1,15 @@
-package cloud.spring.my;
+package cloud.spring.my.common;
 
 //import static org.junit.Assert.assertTrue;
 //
 //import com.alibaba.nacos.api.naming.NamingService;
 //import org.junit.Test;
 
+import cloud.spring.my.common.service.impl.A;
+import cloud.spring.my.common.service.impl.B;
+import cloud.spring.my.common.utils.sping.SpringUtils;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Collections;

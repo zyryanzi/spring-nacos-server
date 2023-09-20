@@ -5,7 +5,7 @@ spring:
   application:
     name: common-server
   profiles:
-    active: ${spring.profiles.active:master}
+    active: ${SPRING_PROFILES_ACTIVE:master}
   cloud:
     nacos:
       config:
@@ -13,7 +13,8 @@ spring:
         namespace: ${NACOS_NAMESPACE:}
         group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
         file-extension: yaml
-#        extension-configs[0]:
+        enabled: false
+      #        extension-configs[0]:
 #          data-id: application-${spring.profiles.active:dev}.yaml
       discovery:
         server-addr: ${NACOS:[2001:470:c:761::2]:8848}

@@ -1,6 +1,14 @@
 package cloud.spring.my.study.domain;
 
-public class Car extends Product{
+//import jakarta.servlet.annotation.WebFilter;
+//import org.springframework.boot.web.servlet.FilterRegistrationBean;
+//import org.springframework.core.annotation.Order;
+
+import java.lang.annotation.Annotation;
+
+
+//@WebFilter
+public class Car extends Product {
 
     /**
      * 品牌通过组合的方式实现桥接模式
@@ -27,4 +35,5 @@ public class Car extends Product{
         super.info();
         System.out.println("汽车");
     }
+
 }

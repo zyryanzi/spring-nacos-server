@@ -9,7 +9,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,7 +30,6 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
     @Resource
     private SysUserMapper userMapper;
-    @Autowired
 
     @Override
     public UserDetails loadUserByUsername(String username) throws AuthenticationException {
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         if (CollectionUtils.isEmpty(userDetail.getRoles())) {
             throw new UsernameNotFoundException("角色信息异常");
         }
+
 
         Collection<GrantedAuthority> authorities = userDetail.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleKey()))
@@ -63,4 +65,5 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
         Map<String, Object> userInfoMap = userMapper.selectUserInfoMap(username);
         return userInfoMap;
     }
+
 }
