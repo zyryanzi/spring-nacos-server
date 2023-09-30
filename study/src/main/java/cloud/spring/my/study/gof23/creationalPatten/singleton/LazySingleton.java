@@ -1,5 +1,8 @@
 package cloud.spring.my.study.gof23.creationalPatten.singleton;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * 懒汉式
  */
