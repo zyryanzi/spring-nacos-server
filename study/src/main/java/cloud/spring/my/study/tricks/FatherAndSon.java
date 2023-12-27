@@ -1,4 +1,4 @@
-package cloud.spring.my.study.algorithm;
+package cloud.spring.my.study.tricks;
 
 public class FatherAndSon {
     public static void main(String[] args) {

@@ -1,0 +1,54 @@
+server:
+  port: 58083
+  servlet:
+    context-path: /redis-mq-consumer
+
+spring:
+  application:
+    name: redis-mq-consumer
+
+  data:
+    redis:
+      password: qwer1234
+      # 单点配置超时
+#      timeout: 1000ms
+      lettuce:
+        commandTimeout: 6 # s 命令超时时间
+        pool:
+          enabled: true
+          max-active: 1024
+          max-idle: 200
+          min-idle: 5
+          time-between-eviction-runs: 2000ms
+          max-wait: -1ms
+        cluster:
+          nodes: 192.168.50.111:7000,192.168.50.111:7001,192.168.50.111:7002
+          connectTimeout: 30  # s 集群连接超时时间
+          enabled: true
+          refresh:
+            adaptive: true
+            period: 60
+      cluster:
+        max-redirects: 3
+
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:58086
+        username:
+        password:
+
+management:
+  endpoint:
+    logfile:
+      external-file: ./logs/client-info.log
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    stdout: info
+    io.lettuce.core.cluster: debug

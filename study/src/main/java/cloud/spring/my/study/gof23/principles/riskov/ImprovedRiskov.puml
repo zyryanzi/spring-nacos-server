@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Father
+class Son
+
+class Base{
+    + func2(): String
+}
+
+class Father extends Base {
+    + func1(a: int, b: int): int
+}
+
+class Son extends Base {
+    - f: Father
+    + func2(a: int, b: int): int
+}
+
+@enduml

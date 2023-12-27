@@ -4,11 +4,19 @@ package cloud.spring.my.study.domain;
 //import org.springframework.boot.web.servlet.FilterRegistrationBean;
 //import org.springframework.core.annotation.Order;
 
+import cn.hutool.core.net.NetUtil;
+import cn.hutool.extra.spring.SpringUtil;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 //@WebFilter
-public class Car extends Product {
+public class Car extends Product implements Cloneable {
 
     /**
      * 品牌通过组合的方式实现桥接模式
@@ -34,6 +42,17 @@ public class Car extends Product {
     public void info() {
         super.info();
         System.out.println("汽车");
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public static void main(String[] args) {
+        int i = 31;
+        System.out.println();
+        NetUtil.ipv4ToLong(NetUtil.getLocalhostStr());
     }
 
 }

@@ -12,7 +12,7 @@ public class StringTest {
         // 注意 hasNext 和 hasNextLine 的区别
         while (in.hasNextInt()) { // 注意 while 处理多个 case
             data.add(in.nextInt());
-            if (data.size() > 0 && data.get(0) + 1 == data.size()) {
+            if (!data.isEmpty() && data.get(0) + 1 == data.size()) {
                 Integer num = data.get(0);
                 for (int i = 1; i < num + 1; i++) {
                     res.add(data.get(i));

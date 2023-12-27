@@ -1,216 +1,226 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.0</version>
-  </parent>
+    <groupId>cloud.spring.my</groupId>
+    <artifactId>beyond-cloud-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <groupId>cloud.spring.my</groupId>
-  <artifactId>beyond-cloud-parent</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+    <name>beyond-cloud</name>
+    <description>第一个微服务-超越自我</description>
+    <!-- FIXME change it to the project's website -->
+    <url>www.nontech.top</url>
 
-  <name>beyond-cloud</name>
-  <description>第一个微服务-超越自我</description>
-  <!-- FIXME change it to the project's website -->
-  <url>www.nontech.top</url>
+    <modules>
+        <module>base-server</module>
+        <module>common-server</module>
+        <module>redis-server</module>
+        <module>redis-mq-consumer</module>
+        <!--        <module>mongodb-server</module>-->
+        <!--        <module>spring-security-client</module>-->
+        <!--        <module>spring-security-server</module>-->
+        <module>spring-gateway-server</module>
+        <module>adminUI-server</module>
+        <module>rabbitmq-producer-server</module>
+        <module>rabbitmq-consumer-server</module>
+        <module>short-domain-server</module>
+        <module>im-demo</module>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.cloud.alibaba.version>2022.0.0.0-RC1</spring.cloud.alibaba.version>
-    <spring.cloud.version>2022.0.2</spring.cloud.version>
-    <fastjson.version>1.2.75</fastjson.version>
-  </properties>
+        <!--        <module>study</module>-->
+        <!--        <module>handle-spring</module>-->
+    </modules>
 
-  <modules>
-    <module>base-server</module>
-    <module>spring-gateway-server</module>
-    <module>common-server</module>
-    <module>short-domain-server</module>
-    <module>mongodb-server</module>
-    <module>spring-security-server</module>
-    <module>redis-server</module>
-    <module>study</module>
-      <module>spring-security-client</module>
-      <module>handle-spring</module>
-  </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.cloud.alibaba.version>2022.0.0.0-RC2</spring.cloud.alibaba.version>
+        <spring.cloud.version>2023.0.0</spring.cloud.version>
+        <maven.compiler.plugin.source>17</maven.compiler.plugin.source>
+        <maven.compiler.plugin.target>17</maven.compiler.plugin.target>
+    </properties>
 
-  <!-- 打包到nexus服务 -->
-  <distributionManagement>
-    <repository>
-      <id>beyond</id>
-      <name>beyond Repository</name>
-      <url>http://localhost:58081/repository/my-group/beyond</url>
-      <!--<url>http://maven.jeecg.com:8090/nexus/content/repositories/jeecg</url>-->
-    </repository>
-    <snapshotRepository>
-      <id>beyond-snapshots</id>
-      <name>beyond Snapshot Repository</name>
-      <url>http://localhost:58081/repository/my-group/snapshorts</url>
-      <!--<url>http://maven.jeecg.com:8090/nexus/content/repositories/snapshots/</url>-->
-    </snapshotRepository>
-  </distributionManagement>
+    <!-- 可以省去下面相关依赖的版本约束 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.2.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-  <!-- 可以省去下面相关依赖的版本约束 -->
-  <dependencyManagement>
+    <!-- 打包到nexus服务 -->
+    <distributionManagement>
+        <repository>
+            <id>beyond</id>
+            <name>beyond Repository</name>
+            <url>http://localhost:58081/repository/my-group/beyond</url>
+            <!--<url>http://maven.jeecg.com:8090/nexus/content/repositories/jeecg</url>-->
+        </repository>
+        <snapshotRepository>
+            <id>beyond-snapshots</id>
+            <name>beyond Snapshot Repository</name>
+            <url>http://localhost:58081/repository/my-group/snapshorts</url>
+            <!--<url>http://maven.jeecg.com:8090/nexus/content/repositories/snapshots/</url>-->
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring.cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>${spring.cloud.alibaba.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-bom</artifactId>
-        <version>2023.0.1</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
+        <!-- nacos 配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- spring -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-bootstrap</artifactId>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.21</version>
+        </dependency>
+
+
+        <!--        &lt;!&ndash; shiro &ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>org.apache.shiro</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>shiro-spring-boot-starter</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>1.10.0</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+
+        <!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<groupId>com.alibaba.cloud</groupId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<artifactId>spring-boot-starter-actuator</artifactId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<artifactId>spring-boot-starter-web</artifactId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash; Apache-Shiro &ndash;&gt;-->
+        <!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<groupId>org.apache.shiro</groupId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<artifactId>shiro-core</artifactId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<version>${shiro.version}</version>&ndash;&gt;-->
+        <!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<groupId>org.apache.shiro</groupId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<artifactId>shiro-web</artifactId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<version>${shiro.version}</version>&ndash;&gt;-->
+        <!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<dependency>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<groupId>org.apache.shiro</groupId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<artifactId>shiro-spring</artifactId>&ndash;&gt;-->
+        <!--        &lt;!&ndash;<version>${shiro.version}</version>&ndash;&gt;-->
+        <!--        &lt;!&ndash;</dependency>&ndash;&gt;-->
     </dependencies>
-  </dependencyManagement>
 
-  <dependencies>
-    <!-- nacos 配置中心 -->
-    <dependency>
-      <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-    </dependency>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <addResources>true</addResources>
+                    <classifier>exec</classifier>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.plugin.source}</source>
+                    <target>${maven.compiler.plugin.target}</target>
+                    <proc>none</proc>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>@</delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 
-    <!-- spring -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-bootstrap</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
+        </pluginManagement>
+    </build>
 
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>2.0.35</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>31.1-jre</version>
-    </dependency>
-
-    <!-- shiro -->
-    <dependency>
-      <groupId>org.apache.shiro</groupId>
-      <artifactId>shiro-spring-boot-starter</artifactId>
-      <version>1.10.0</version>
-    </dependency>
-
-
-
-    <!--<dependency>-->
-    <!--<groupId>com.alibaba.cloud</groupId>-->
-    <!--<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-web</artifactId>-->
-    <!--</dependency>-->
-    <!-- Apache-Shiro -->
-    <!--<dependency>-->
-      <!--<groupId>org.apache.shiro</groupId>-->
-      <!--<artifactId>shiro-core</artifactId>-->
-      <!--<version>${shiro.version}</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.apache.shiro</groupId>-->
-      <!--<artifactId>shiro-web</artifactId>-->
-      <!--<version>${shiro.version}</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.apache.shiro</groupId>-->
-      <!--<artifactId>shiro-spring</artifactId>-->
-      <!--<version>${shiro.version}</version>-->
-    <!--</dependency>-->
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <classifier>exec</classifier>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <delimiters>@</delimiters>
-          <useDefaultDelimiters>false</useDefaultDelimiters>
-        </configuration>
-      </plugin>
-    </plugins>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-
-    </pluginManagement>
-  </build>
-
-  <profiles>
-    <profile>
-      <id>dev</id>
-        <activation>
-          <activeByDefault>true</activeByDefault>
-        </activation>
-      <properties>
-        <profileActive>dev</profileActive>
-      </properties>
-    </profile>
-    <profile>
-      <id>uat</id>
-      <properties>
-        <profileActive>uat</profileActive>
-      </properties>
-    </profile>
-    <profile>
-      <id>prod</id>
-      <properties>
-        <profileActive>prod</profileActive>
-      </properties>
-    </profile>
-  </profiles>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <profileActive>uat</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+        </profile>
+    </profiles>
 </project>

@@ -1,0 +1,43 @@
+server:
+  port: 58088
+  servlet:
+    context-path: /rabbitmq-consumer
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        queue1_input:
+          destination: beyond-exchange
+          content-type: application/json
+          producer:
+            required-groups: queue1
+      rabbit:
+        bindings:
+          queue1_output:
+            producer:
+              exchange-type: direct
+
+  rabbitmq:
+    host: 192.168.50.111
+    port: 5672
+    username: root
+    password: root
+    connection-timeout: 10000
+    virtual-host: /beyond-cloud
+    publisher-returns: true
+    publisher-confirm-type: correlated
+    template:
+      retry:
+        enabled: true
+        initial-interval: 2s
+        max-attempts: 3
+      mandatory: true
+      routing-key: beyond-key
+      channel:
+        prefetch: 100
+        acknowledge-mode: manual
+
+
+
+

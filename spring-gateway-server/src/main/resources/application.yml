@@ -1,9 +1,34 @@
-nacos
+server:
+  port: 58082
+  servlet:
+    context-path: /spring-gateway
+
+spring:
+  application:
+    name: spring-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: short-domain
+          uri: http://localhost:58080
+          predicates:
+            - Path=/short-domain/**
+        - id: redis
+          uri: http://localhost:58081
+          predicates:
+            - Path=/redis/**
+    nacos:
+      discovery:
+        server-addr: ${NACOS:[2001:470:c:761::2]:8848}
+  #        namespace: ${NACOS_NAMESPACE:}
+  #        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
 
 
-
-
-
-
-
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

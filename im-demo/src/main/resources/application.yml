@@ -1,0 +1,7 @@
+server:
+  netty:
+    port: 58800
+    connection-timeout: 30000   # channel的连接超时
+    idle-timeout: 10000         # channel的空闲超时
+    initial-buffer-size: 8192
+    h2c-max-content-length: 10240

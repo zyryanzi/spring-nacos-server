@@ -1,0 +1,73 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface IEvent
+abstract class AbstractEvent
+class DraftEvent
+class SubmittedEvent
+class ReturnedEvent
+class ConcreteBean
+
+IEvent <|.-down AbstractEvent
+AbstractEvent o--up ConcreteBean
+State <.. ConcreteBean
+AbstractEvent <|---left DraftEvent
+AbstractEvent <|---right SubmittedEvent
+AbstractEvent <|--down ReturnedEvent
+
+interface IEvent {
+    # save(): IEvent
+    # submit(): IEvent
+    # pass(): IEvent
+    # reject(): IEvent
+    # transfer(): IEvent
+    # returnn(): IEvent
+}
+
+abstract class AbstractEvent {
+    # concreteBean: ConcreteBean
+    # nextEvent: AbstractEvent
+
+    + setConcreteBean(ConcreteBean cb): void
+    + getNextEvent(statee: State): AbstractEvent
+
+    + save(): IEvent
+    + submit(): IEvent
+    + pass(): IEvent
+    + reject(): IEvent
+    + transfer(): IEvent
+    + returnn(): IEvent
+}
+
+class DraftEvent {
+    + save(): IEvent
+    + submit(): IEvent
+}
+
+class SubmittedEvent {
+    + pass(): IEvent
+    + reject(): IEvent
+    + transfer(): IEvent
+    + returnn(): IEvent
+}
+
+class ReturnedEvent {
+    + submit(): IEvent
+}
+
+class ConcreteBean {
+    - status: String
+}
+
+enum State {
+    DRAFT
+    SUBMITTED
+    IN_APPROVAL
+    APPROVAL
+    RETURNED
+
+    # {abstract} getEvent(): IEvent
+    + {static} getCodeByDesc(desc: String): String
+}
+
+@enduml

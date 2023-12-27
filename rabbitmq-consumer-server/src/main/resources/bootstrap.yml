@@ -1,0 +1,27 @@
+
+spring:
+  application:
+    name: rabbitmq-consumer-server
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS:[2001:470:c:761::2]:8848}
+        namespace: ${NACOS_NAMESPACE:1ae55657-f4c7-470b-8423-7ce119c3b144}
+        group: ${NACOS_GROUP:GATEWAY_GROUP}
+        file-extension: yaml
+        refresh-enabled: true
+        enabled: false
+      #        import-check:
+      #          enabled: false
+      #        extension-configs[0]:
+      #          data-id: application-${spring.profiles.active:dev}.yaml
+      discovery:
+        server-addr: ${NACOS:[2001:470:c:761::2]:8848}
+        namespace: ${NACOS_NAMESPACE:1ae55657-f4c7-470b-8423-7ce119c3b144}
+        group: ${NACOS_GROUP:GATEWAY_GROUP}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

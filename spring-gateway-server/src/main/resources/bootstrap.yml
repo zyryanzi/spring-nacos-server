@@ -1,21 +1,27 @@
-#server:
-#  port: 30801
 
 spring:
   application:
-    name: beyond-spring-gateway
-  profiles:
-    active: ${spring.profiles.active:dev}
+    name: spring-gateway
   cloud:
     nacos:
       config:
-        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
-        namespace: ${NACOS_NAMESPACE:}
         server-addr: ${NACOS:[2001:470:c:761::2]:8848}
+        namespace: ${NACOS_NAMESPACE:1ae55657-f4c7-470b-8423-7ce119c3b144}
+        group: ${NACOS_GROUP:GATEWAY_GROUP}
         file-extension: yaml
-#        extension-configs[0]:
-#          data-id: application-${spring.profiles.active:dev}.yaml
+        refresh-enabled: true
+        enabled: false
+      #        import-check:
+      #          enabled: false
+      #        extension-configs[0]:
+      #          data-id: application-${spring.profiles.active:dev}.yaml
       discovery:
         server-addr: ${NACOS:[2001:470:c:761::2]:8848}
-        namespace: ${NACOS_NAMESPACE:}
-        group: ${NACOS_CONFIG_GROUP:DEFAULT_GROUP}
+        namespace: ${NACOS_NAMESPACE:1ae55657-f4c7-470b-8423-7ce119c3b144}
+        group: ${NACOS_GROUP:GATEWAY_GROUP}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,129 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface IStateHandler
+
+class StateMachine
+class Exec
+
+class Process
+class StateMachine
+class ProcessBuilder
+note top of ProcessBuilder
+    进程构造，建造者模式
+end note
+
+class HashBaseTable
+
+class DraftHandler
+class SubmittedHandler
+class ApprovalHandler
+class ReturnedHandler
+class RejectedHandler
+
+IStateHandler <|..-right DraftHandler
+IStateHandler <|..-down SubmittedHandler
+IStateHandler <|..-left ApprovalHandler
+IStateHandler <|..-down ReturnedHandler
+IStateHandler <|..-down RejectedHandler
+
+StateMachine *---up ConcreteBean
+StateMachine o---left Process
+StateMachine *---down Exec
+Exec *-- IStateHandler
+Process <..-up ProcessBuilder
+State <..-left StateMachine
+Event <..-left StateMachine
+
+StateMachine *---up HashBaseTable
+
+interface IStateHandler<T, R>{
+    + handle(t: T): R
+}
+
+abstract class StateMachine {
+    - processTable: HashBaseTable
+    - processList: List<Process>
+
+    + getNext(statee: State, event: Event): State
+    + getHandler(statee: State, event: Event): IStateHandler
+}
+
+class Exec {
+    - nextState: State
+    - stateHandler: IStateHandler
+}
+
+class DraftHandler {
+    + concreteBean: ConcreteBean
+
+    + handle(cb: ConcreteBean): State
+}
+
+class SubmittedHandler {
+    + concreteBean: ConcreteBean
+
+    + handle(cb: ConcreteBean): State
+}
+
+class ApprovalHandler {
+    + concreteBean: ConcreteBean
+
+    + handle(cb: ConcreteBean): State
+}
+
+class ReturnedHandler {
+    + concreteBean: ConcreteBean
+
+    + handle(cb: ConcreteBean): State
+}
+
+class RejectedHandler {
+    + concreteBean: ConcreteBean
+
+    + handle(cb: ConcreteBean): State
+}
+
+class ConcreteBean {
+    - status: String
+}
+
+class Process {
+    - from: State
+    - to: State
+    - event: Event
+    - stateHandler: IStateHandler
+}
+
+class ProcessBuilder {
+    + process: Process
+
+    + {static} getInstance(): ProcessBuilder
+
+    + setProcess(process: Process): void
+
+    + from(from: State): ProcessBuilder
+    + to(to: State): ProcessBuilder
+    + event(event: Event): ProcessBuilder
+    + handler(handler: IStateHandler): ProcessBuilder
+    + build(): Process
+}
+
+enum State {
+    DRAFT
+    SUBMITTED
+    IN_APPROVAL
+    APPROVAL
+    RETURNED
+}
+
+enum Event {
+    SAVE
+    SUBMIT
+    PASS
+    REJECT
+    TRANSFER
+    RETURNN
+}
+
+@enduml

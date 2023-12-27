@@ -1,0 +1,27 @@
+server:
+  port: 58086
+
+spring:
+  application:
+    name: adminUI-server
+  boot:
+    admin:
+      ui:
+        title: Beyond Server Monit Center
+      client:
+        instance:
+          metadata:
+            tags:
+              environment: local
+      monitor:
+        default-timeout: 20000
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

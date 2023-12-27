@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+C -down-* A
+D -down-* B
+
+interface InterfaceI {
+    # method1(): void
+}
+
+interface InterfaceII {
+    # method2(): void
+    # method3(): void
+}
+
+interface InterfaceIII {
+    # method4(): void
+    # method5(): void
+}
+
+class C implements InterfaceI, InterfaceII {
+    + method1(): void
+    + method2(): void
+    + method3(): void
+}
+
+class D implements InterfaceI, InterfaceIII{
+    + method1(): void
+    + method4(): void
+    + method5(): void
+}
+
+class A {
+    - c: C
+    + method1(): void
+    + method2(): void
+    + method3(): void
+}
+
+class B {
+    - d: D
+    + method1(): void
+    + method4(): void
+    + method5(): void
+}
+
+
+@enduml
